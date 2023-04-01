@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">saper</string>
+    <string name="hello">G♂chi miner</string>
+    <string name="rows">Строки</string>
+    <string name="columns">Колонки</string>
+    <string name="mines">Dangeon области</string>
+</resources>

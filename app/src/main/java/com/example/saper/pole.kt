@@ -1,28 +1,31 @@
 package com.example.saper
 
+import MainAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.TextView
-import kotlin.jvm.internal.FunInterfaceConstructorReference
+import android.widget.*
+import android.widget.AdapterView.OnItemClickListener;
+
 
 class pole : AppCompatActivity() {
-    companion object {
-        const val columns_count = "total_count"
-        const val rows_count = "total_count"
-        const val mines_count = "total_count"
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+       override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pole)
-       val count_of_columns : String? = intent.getStringExtra(columns_count)
-        val count_of_rows : String? = intent.getStringExtra(rows_count)
-        val count_of_mines : String? = intent.getStringExtra(mines_count)
+        val bundle = intent.extras
+        val count_of_columns = intent.getStringExtra("columns")
+        val count_of_rows = intent.getStringExtra("rows")
+        val count_of_mines = intent.getStringExtra("mines")
 
-        var show : TextView = findViewById(R.id.textView4)
-        show.setText(count_of_rows)
+        val pole: GridView = findViewById(R.id.pole_s_minami)
+        pole.numColumns = count_of_columns.toString().toInt()
 
+        val mainAdapter =  MainAdapter(this@pole,Integer.parseInt(count_of_columns) * Integer.parseInt(count_of_rows))
+        pole.adapter = mainAdapter
+        pole.onItemClickListener = OnItemClickListener { _, _, position, _ ->
+            Toast.makeText(applicationContext, "You CLicked ",
+                Toast.LENGTH_SHORT).show()
 
+        }
+           pole.columnWidth=  1200/ Integer.parseInt(count_of_columns)
     }
 }
